@@ -24,7 +24,7 @@ flags.DEFINE_boolean("do_setup", True, "")
 
 # for submission
 _SPLITS = ["dev", "test"]
-_DATASETS = ["bird_dev", "bird_dev_test"]
+_DATASETS = ["bird_dev", "bird_test"]
 # # for development
 # _DATASETS = [
 #     "bird_dev",
