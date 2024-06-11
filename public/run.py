@@ -22,18 +22,18 @@ flags.DEFINE_string("input_dir", None, "The input_dir that contains dev/ and tes
 flags.DEFINE_string("url", "http://localhost:8080", "The endpoint")
 flags.DEFINE_boolean("do_setup", True, "")
 
-# # for submission
-# _SPLITS = ["dev", "test"]
-# _DATASETS = ["bird_dev", "bird_dev_test"]
-# for development
-_DATASETS = [
-    "bird_dev",
-    "bird_dev_level1",
-    "bird_dev_level2",
-    "bird_dev_level3",
-    "bird_dev_tiny",
-]
-_SPLITS = ["dev"]
+# for submission
+_SPLITS = ["dev", "test"]
+_DATASETS = ["bird_dev", "bird_dev_test"]
+# # for development
+# _DATASETS = [
+#     "bird_dev",
+#     "bird_dev_level1",
+#     "bird_dev_level2",
+#     "bird_dev_level3",
+#     "bird_dev_tiny",
+# ]
+# _SPLITS = ["dev"]
 
 
 def get_db_path(db_dir, split, db_id):
