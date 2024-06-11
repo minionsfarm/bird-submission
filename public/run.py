@@ -220,7 +220,7 @@ def main(argv):
                 break
 
             # TODO: change the sleep time
-            time.sleep(10)
+            time.sleep(60)
 
         # update query_data
         query_data = response.get("query_data", [])
