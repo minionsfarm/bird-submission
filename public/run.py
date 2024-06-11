@@ -158,6 +158,10 @@ def main(argv):
     questions = io_utils.read_file(questions_filename)
     print("questions", len(questions))
 
+    tables_filename = os.path.join(input_dir, split, f"{split}_tables.json")
+    tables = io_utils.read_file(tables_filename)
+    print("tables", len(tables))
+
     # initial setup
     if FLAGS.do_setup or split == "test":
         r = requests.post(
@@ -168,6 +172,7 @@ def main(argv):
                 "examples": examples,
                 "split": split,
                 "questions": questions,
+                "tables": tables,
             },
         )
         if r.status_code != 200:
