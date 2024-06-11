@@ -27,6 +27,10 @@ _SPLITS = ["dev", "test"]
 _DATASETS = [
     "bird_dev",
     "bird_test",
+    "bird_dev_level1",
+    "bird_dev_level2",
+    "bird_dev_level3",
+    "bird_dev_tiny",
 ]
 # # for development
 # _DATASETS = [
@@ -127,6 +131,8 @@ def execute_query(query, input_dir, split, db_id):
         return cursor.fetchmany(2)
     except Exception as e:
         return f"MinionsSQLGenerationError: {str(e)}"
+    finally:
+        connection.close()
 
 
 def main(argv):
@@ -233,13 +239,42 @@ def main(argv):
 
         # update query_data
         query_data = response.get("query_data", [])
+        # print(f"query_data1: {query_data}")
+        cnt_first_not_chosen = 0
         for q in query_data:
-            q["output"] = execute_query(
-                q["query"],
-                input_dir,
-                split,
-                q["db_id"],
-            )
+            first_query = q["query"][0]
+            valid = False
+            for query in q["query"]:
+                output = execute_query(
+                    query,
+                    input_dir,
+                    split,
+                    q["db_id"],
+                )
+                q["output"] = output
+
+                # Error
+                if isinstance(output, str) and output.startswith("MinionsSQLGenerationError"):
+                    # print(f"220220 output Error!!!!!!: {output}\n\n")
+                    continue
+                if output:
+                    valid = True
+                    break
+            if valid:
+                q["query"] = query
+            else:
+                # print(f"220220 no valid queries: {q}\n\n")
+                q["query"] = q["query"][0]  # if all failed, choose the first one
+                q["output"] = execute_query(
+                    q["query"],
+                    input_dir,
+                    split,
+                    q["db_id"],
+                )
+            if q['query'] != first_query:
+                cnt_first_not_chosen += 1
+
+        print(f"cnt_first_not_chosen: {cnt_first_not_chosen} / {len(query_data)}")
 
         # print(f"query_data: {query_data}")
 
