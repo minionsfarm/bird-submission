@@ -24,7 +24,10 @@ flags.DEFINE_boolean("do_setup", True, "")
 
 # for submission
 _SPLITS = ["dev", "test"]
-_DATASETS = ["bird_dev", "bird_test"]
+_DATASETS = [
+    "bird_dev",
+    "bird_test",
+]
 # # for development
 # _DATASETS = [
 #     "bird_dev",
@@ -202,7 +205,10 @@ def main(argv):
             headers={"Content-Type": "application/json"},
             json=request_args,
         )
-        print(f"request-generation: {r.json()}")
+        r_json = r.json()
+        r_json_to_print = r_json.copy()
+        r_json_to_print["query_data"] = None
+        print(f"request-generation: {r_json_to_print}")
         if r.status_code != 200:
             raise Exception("request-generation went wrong", r.status_code)
 
@@ -212,7 +218,10 @@ def main(argv):
                 headers={"Content-Type": "application/json"},
                 json=request_args,
             )
-            print(f"retrieve-generation: {r.json()}")
+            r_json = r.json()
+            r_json_to_print = r_json.copy()
+            r_json_to_print["query_data"] = None
+            print(f"retrieve-generation: {r_json_to_print}")
             if r.status_code != 200:
                 raise Exception("retrieve-generation went wrong", r.status_code)
             response = r.json()
@@ -232,7 +241,7 @@ def main(argv):
                 q["db_id"],
             )
 
-        print(f"query_data: {query_data}")
+        # print(f"query_data: {query_data}")
 
     # Store the final results
     io_utils.write_file(
