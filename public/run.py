@@ -240,11 +240,8 @@ def main(argv):
 
         # update query_data
         query_data = response.get("query_data", [])
-        # print(f"query_data1: {query_data}")
-        cnt_first_not_chosen = 0
         for q in query_data:
-            first_query = q["query"][0]
-            valid = False
+            outputs = []
             for query in q["query"]:
                 output = execute_query(
                     query,
@@ -252,37 +249,14 @@ def main(argv):
                     split,
                     q["db_id"],
                 )
-                q["output"] = output
+                outputs.append(output)
+            q["output"] = outputs
 
-                # Error
-                if isinstance(output, str) and output.startswith("MinionsSQLGenerationError"):
-                    # print(f"220220 output Error!!!!!!: {output}\n\n")
-                    continue
-                if output:
-                    valid = True
-                    break
-            if valid:
-                q["query"] = query
-            else:
-                # print(f"220220 no valid queries: {q}\n\n")
-                q["query"] = q["query"][0]  # if all failed, choose the first one
-                q["output"] = execute_query(
-                    q["query"],
-                    input_dir,
-                    split,
-                    q["db_id"],
-                )
-            if q['query'] != first_query:
-                cnt_first_not_chosen += 1
-
-        print(f"cnt_first_not_chosen: {cnt_first_not_chosen} / {len(query_data)}")
-
-        # print(f"query_data: {query_data}")
 
     # Store the final results
     io_utils.write_file(
         f"outputs/{split}/output.sql",
-        "\n".join([q["query"] for q in query_data]),
+        "\n".join([q["query"][0] for q in query_data]),
     )
     print(f"SQL generation is Done. Find the sql file here: outputs/{split}/output.sql")
 
