@@ -140,6 +140,7 @@ def main(argv):
         FLAGS.dataset in _DATASETS
     ), "--dataset bird_dev or --dataset bird_test should be provided"
     assert FLAGS.input_dir, "--input_dir <input_dir> that contains dev/ and test/"
+    print("version: 1.0")
 
     input_dir = FLAGS.input_dir
     output_dir = "outputs"
