@@ -1,3 +1,4 @@
+import logging
 import os
 import sqlite3
 import time
@@ -13,6 +14,8 @@ from absl import flags
 from public import db_utils
 from public import example_utils
 from public import io_utils
+
+logging.basicConfig(level=logging.INFO)
 
 FLAGS = flags.FLAGS
 
@@ -146,7 +149,7 @@ def main(argv):
         FLAGS.dataset in _DATASETS
     ), "--dataset bird_dev or --dataset bird_test should be provided"
     assert FLAGS.input_dir, "--input_dir <input_dir> that contains dev/ and test/"
-    print("version: 1.0")
+    logging.info("version: 1.0")
 
     input_dir = FLAGS.input_dir
     output_dir = "outputs"
@@ -159,18 +162,18 @@ def main(argv):
     split = FLAGS.split
     schemas_filename = os.path.join(output_dir, split, "schemas_dict.json")
     schemas = io_utils.read_file(schemas_filename)
-    print("schemas", len(schemas), schemas_filename)
+    logging.info(f"schemas {len(schemas)}, {schemas_filename}")
 
     exmaples_filename = os.path.join(output_dir, split, "examples.json.gz")
     examples = io_utils.read_file(exmaples_filename)
 
     questions_filename = os.path.join(input_dir, split, f"{split}.json")
     questions = io_utils.read_file(questions_filename)
-    print("questions", len(questions))
+    logging.info(f"questions {len(questions)}")
 
     tables_filename = os.path.join(input_dir, split, f"{split}_tables.json")
     tables = io_utils.read_file(tables_filename)
-    print("tables", len(tables))
+    logging.info(f"tables {len(tables)}")
 
     # initial setup
     if FLAGS.do_setup or split == "test":
@@ -190,11 +193,11 @@ def main(argv):
 
     # start pinging the server
     dataset = FLAGS.dataset
-    print(dataset)
+    logging.info(f"dataset: {dataset}")
 
     query_data = []
     for nth_try in range(4):
-        print(f"nth_try: {nth_try}")
+        logging.info(f"nth_try: {nth_try}")
         request_id = (
             datetime.now(timezone.utc)
             .astimezone(ZoneInfo("America/Los_Angeles"))
@@ -215,7 +218,7 @@ def main(argv):
         r_json = r.json()
         r_json_to_print = r_json.copy()
         r_json_to_print["query_data"] = None
-        print(f"request-generation: {r_json_to_print}")
+        logging.info(f"request-generation: {r_json_to_print}")
         if r.status_code != 200:
             raise Exception("request-generation went wrong", r.status_code)
 
@@ -228,7 +231,7 @@ def main(argv):
             r_json = r.json()
             r_json_to_print = r_json.copy()
             r_json_to_print["query_data"] = None
-            print(f"retrieve-generation: {r_json_to_print}")
+            logging.info(f"retrieve-generation: {r_json_to_print}")
             if r.status_code != 200:
                 raise Exception("retrieve-generation went wrong", r.status_code)
             response = r.json()
@@ -258,7 +261,7 @@ def main(argv):
         f"outputs/{split}/output.sql",
         "\n".join([q["query"][0] for q in query_data]),
     )
-    print(f"SQL generation is Done. Find the sql file here: outputs/{split}/output.sql")
+    logging.info(f"SQL generation is Done. Find the sql file here: outputs/{split}/output.sql")
 
 
 if __name__ == "__main__":
