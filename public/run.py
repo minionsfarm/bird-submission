@@ -25,6 +25,8 @@ flags.DEFINE_string("input_dir", None, "The input_dir that contains dev/ and tes
 flags.DEFINE_string("url", "http://localhost:8080", "The endpoint")
 flags.DEFINE_boolean("do_setup", True, "")
 
+VERSION = "2.0.0"
+
 # for submission
 _SPLITS = ["dev", "test"]
 _DATASETS = [
@@ -149,7 +151,7 @@ def main(argv):
         FLAGS.dataset in _DATASETS
     ), "--dataset bird_dev or --dataset bird_test should be provided"
     assert FLAGS.input_dir, "--input_dir <input_dir> that contains dev/ and test/"
-    logging.info("version: 1.0")
+    logging.info(f"version: {VERSION}")
 
     input_dir = FLAGS.input_dir
     output_dir = "outputs"
@@ -186,6 +188,7 @@ def main(argv):
                 "split": split,
                 "questions": questions,
                 "tables": tables,
+                "version": VERSION,
             },
         )
         if r.status_code != 200:
@@ -209,6 +212,7 @@ def main(argv):
             "dataset": dataset,
             "nth_try": nth_try,
             "query_data": query_data,
+            "version": VERSION,
         }
         r = requests.post(
             f"{FLAGS.url}/api/request-generation",
