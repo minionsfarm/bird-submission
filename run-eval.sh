@@ -31,6 +31,10 @@ fi
 
 INPUT_DIR=$3
 OUTPUT_DIR=$4
+DATASET=$5
+if [ -z "$DATASET" ]; then
+    DATASET="bird_${SPLIT}"
+fi
 
 # Check if INPUT_DIR starts with $HOME and is not equal to $HOME
 if [[ "$INPUT_DIR" != "$HOME"* || "$INPUT_DIR" == "$HOME" ]]; then
@@ -48,6 +52,7 @@ fi
 INPUT_DIR="${INPUT_DIR/#$HOME/\/home\/root}"
 OUTPUT_DIR="${OUTPUT_DIR/#$HOME/\/home\/root}"
 
+set -x
 docker run \
     --rm \
     --gpus all \
@@ -57,7 +62,7 @@ docker run \
     minions.azurecr.io/bird \
     --model_id="${MODEL}" \
     --split="${SPLIT}" \
-    --dataset="bird_${SPLIT}" \
+    --dataset="${DATASET}" \
     --input_dir="${INPUT_DIR}" \
     --output_dir="${OUTPUT_DIR}" \
     --num_gpus=4
