@@ -2,14 +2,16 @@
 ```
 git clone https://github.com/minionsfarm/bird-submission.git
 cd bird-submission
-poetry install
+# sudo is required to create /etc/docker/daemon.json
+sudo ./prepare-eval.sh
 ```
 
 ## generation
 ```
 # for dev
-PYTHONPATH=$(pwd) poetry run python public/run.py --split dev --input_dir <INPUT_DIR> --dataset bird_dev --url=<URL>
+./run-eval.sh dev small <INPUT_DIR> <OUTPUT_DIR>
 # for test
-PYTHONPATH=$(pwd) poetry run python public/run.py --split test --input_dir <INPUT_DIR> --dataset bird_test --url=<URL>
+./run-eval.sh test small <INPUT_DIR> <OUTPUT_DIR>
 ```
 The <INPUT_DIR> should contain dev/ and test/ where dev/ contains dev_databases, dev.json, dev.sql, etc.
+Both <INPUT_DIR> and <OUTPUT_DIR> should start with /home/$(whoami)
