@@ -1,8 +1,9 @@
 ## machine spec
 ```
-Azure Standard_NC96ads_A100_v4
+Azure
+Standard_NC96ads_A100_v4 (4 A100 80GB)
 1T SSD
-Ubuntu-HPC 2204 - x64 Gen2
+Ubuntu-HPC 2204 - x64 Gen2 (base image)
 ```
 
 ## installation
