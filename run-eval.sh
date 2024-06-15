@@ -22,6 +22,13 @@ if [ "$MODEL" != "small" ] && [ "$MODEL" != "large" ]; then
     exit 1
 fi
 
+# Map small to x and large to y
+if [ "$MODEL" == "small" ]; then
+    MODEL="20240603_052455"
+elif [ "$MODEL" == "large" ]; then
+    MODEL="20240528_220303"
+fi
+
 INPUT_DIR=$3
 OUTPUT_DIR=$4
 
