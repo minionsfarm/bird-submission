@@ -45,7 +45,8 @@ docker run \
     --rm \
     --gpus all \
     --runtime=nvidia \
-    -v "${HOME}:/home/root minions.azurecr.io/bird" \
+    -v "${HOME}:/home/root" \
+    minions.azurecr.io/bird \
     --model_id="${MODEL}" \
     --split="${SPLIT}" \
     --dataset="bird_${SPLIT}" \
