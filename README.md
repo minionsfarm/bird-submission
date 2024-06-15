@@ -34,6 +34,9 @@ sudo ./create-daemon.sh
 
 # e.g.
 ./run-eval.sh dev small /home/azureuser/datasets/bird /home/azureuser/output
+
+NOTE: If you encounter `docker: Error response from daemon: unknown or invalid runtime name: nvidia.`
+run `sudo systemctl restart docker`
 ```
 The <INPUT_DIR> should contain dev/ and test/ where dev/ contains dev_databases, dev.json, dev.sql, etc.
 Both <INPUT_DIR> and <OUTPUT_DIR> should start with /home/$(whoami)
