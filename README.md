@@ -22,3 +22,12 @@ sudo ./create-deamon.sh
 ```
 The <INPUT_DIR> should contain dev/ and test/ where dev/ contains dev_databases, dev.json, dev.sql, etc.
 Both <INPUT_DIR> and <OUTPUT_DIR> should start with /home/$(whoami)
+
+NOTE:
+```
+dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
+dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
+dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
+dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
+```
+is expected to get printed. Not a problem.
