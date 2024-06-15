@@ -1,3 +1,8 @@
+## machine spec
+Azure Standard_NC96ads_A100_v4
+1T SSD
+Ubuntu-HPC 2204 - x64 Gen2
+
 ## installation
 ```
 git clone https://github.com/minionsfarm/bird-submission.git
@@ -16,9 +21,9 @@ sudo ./create-deamon.sh
 
 ## generation
 ```
-# for dev
+# for dev (about 1 hour)
 ./run-eval.sh dev small <INPUT_DIR> <OUTPUT_DIR>
-# for test
+# for test (about 6 hours)
 ./run-eval.sh test small <INPUT_DIR> <OUTPUT_DIR>
 ./run-eval.sh test large <INPUT_DIR> <OUTPUT_DIR>
 ```
