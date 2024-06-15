@@ -6,6 +6,8 @@ then
     exit 1
 fi
 
+mkdir ~/models ~/adapters
+
 # Download models and adapters
 ACCOUNT_NAME="minionsbirdsubmission2"
 CONTAINER_NAME="models"
