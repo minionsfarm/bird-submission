@@ -20,7 +20,8 @@ az storage blob download-batch \
   --overwrite \
   -s $CONTAINER_NAME \
   -d $DESTINATION_FOLDER \
-  --pattern $TARGET
+  --pattern $TARGET \
+  --max-connections 8
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
 TARGET="models/Meta-Llama-3-8B-Instruct/*"
@@ -29,7 +30,8 @@ az storage blob download-batch \
   --overwrite \
   -s $CONTAINER_NAME \
   -d $DESTINATION_FOLDER \
-  --pattern $TARGET
+  --pattern $TARGET \
+  --max-connections 8
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
 CONTAINER_NAME="adapters"
@@ -39,7 +41,8 @@ az storage blob download-batch \
   --overwrite \
   -s $CONTAINER_NAME \
   -d $DESTINATION_FOLDER \
-  --pattern $TARGET
+  --pattern $TARGET \
+  --max-connections 8
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
 TARGET="adapters/small/*"
@@ -48,8 +51,7 @@ az storage blob download-batch \
   --overwrite \
   -s $CONTAINER_NAME \
   -d $DESTINATION_FOLDER \
-  --pattern $TARGET
+  --pattern $TARGET \
+  --max-connections 8
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
-# Download a docker
-docker pull minions.azurecr.io/bird

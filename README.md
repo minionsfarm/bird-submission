@@ -5,6 +5,9 @@ cd bird-submission
 # NOTE: If az is not installed, please install az first.
 ./prepare-eval.sh
 
+# Download a docker
+docker pull minions.azurecr.io/bird
+
 # sudo is required to create /etc/docker/daemon.json
 sudo ./create-deamon.sh
 ```
