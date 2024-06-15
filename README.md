@@ -13,10 +13,10 @@ cd bird-submission
 ./prepare-eval.sh
 # models and adapters will be at /home/$(whoami)/models and /home/$(whoami)/adapters
 
-# Download a docker
-# In case of a docker permission problem, run `sudo usermod -aG docker $USER`
-# and exit the terminal and open a new one.
-docker pull minions.azurecr.io/bird
+# Download a docker (three steps)
+sudo usermod -aG docker $USER # step 1
+# Step 2. exit the terminal and open a new one
+docker pull minions.azurecr.io/bird # step 3
 
 # sudo is required to create /etc/docker/daemon.json
 sudo ./create-deamon.sh
