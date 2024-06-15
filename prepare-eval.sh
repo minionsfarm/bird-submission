@@ -55,3 +55,5 @@ az storage blob download-batch \
   --max-connections 8
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
+mv ~/adapters/small ~/adapters/20240603_052455
+mv ~/adapters/large ~/adapters/20240528_220303
