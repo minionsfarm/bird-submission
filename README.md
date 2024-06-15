@@ -30,7 +30,7 @@ sudo ./create-deamon.sh
 ./run-eval.sh test large <INPUT_DIR> <OUTPUT_DIR>
 
 # e.g.
-./run-eval.sh dev small ~/datasets/bird ~/output
+./run-eval.sh dev small /home/azureuser/datasets/bird /home/azureuser/output
 ```
 The <INPUT_DIR> should contain dev/ and test/ where dev/ contains dev_databases, dev.json, dev.sql, etc.
 Both <INPUT_DIR> and <OUTPUT_DIR> should start with /home/$(whoami)
