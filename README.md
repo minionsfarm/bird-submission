@@ -40,6 +40,10 @@ Both <INPUT_DIR> and <OUTPUT_DIR> should start with /home/$(whoami)
 
 NOTE:
 ```
+None of PyTorch, TensorFlow >= 2.0, or Flax have been found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+Special tokens have been added in the vocabulary, make sure the associated word embeddings are fine-tuned or trained.
+I0615 05:05:27.268593 140542925115392 run.py:154] version: 3.0.0
+
 dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
 dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
 dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
