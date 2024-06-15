@@ -3,8 +3,10 @@
 git clone https://github.com/minionsfarm/bird-submission.git
 cd bird-submission
 # NOTE: If az is not installed, please install az first.
+./prepare-eval.sh
+
 # sudo is required to create /etc/docker/daemon.json
-sudo ./prepare-eval.sh
+sudo ./create-deamon.sh
 ```
 
 ## generation
