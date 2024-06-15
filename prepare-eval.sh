@@ -41,7 +41,7 @@ az storage blob download-batch \
   --pattern $TARGET
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
-TARGET="adapters/20240603_052455/*"
+TARGET="adapters/large/*"
 az storage blob download-batch \
   --account-name $ACCOUNT_NAME \
   --overwrite \
@@ -50,7 +50,7 @@ az storage blob download-batch \
   --pattern $TARGET
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
-TARGET="adapters/20240528_220303/*"
+TARGET="adapters/small/*"
 az storage blob download-batch \
   --account-name $ACCOUNT_NAME \
   --overwrite \
