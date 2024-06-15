@@ -6,17 +6,6 @@ then
     exit 1
 fi
 
-cat <<EOF > /etc/docker/daemon.json
-{
-  "runtimes": {
-    "nvidia": {
-      "path": "nvidia-container-runtime",
-      "runtimeArgs": []
-    }
-  }
-}
-EOF
-
 # Download models and adapters
 ACCOUNT_NAME="minionsbirdsubmission2"
 CONTAINER_NAME="models"
@@ -41,6 +30,7 @@ az storage blob download-batch \
   --pattern $TARGET
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
+CONTAINER_NAME="adapters"
 TARGET="adapters/large/*"
 az storage blob download-batch \
   --account-name $ACCOUNT_NAME \
