@@ -53,6 +53,7 @@ docker run \
     --gpus all \
     --runtime=nvidia \
     -v "${HOME}:/home/root" \
+    -e TOKENIZERS_PARALLELISM=false \
     minions.azurecr.io/bird \
     --model_id="${MODEL}" \
     --split="${SPLIT}" \
