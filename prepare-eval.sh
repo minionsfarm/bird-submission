@@ -34,7 +34,6 @@ az storage blob download-batch \
   --max-connections 8
 echo "Download completed: $DESTINATION_FOLDER/$TARGET"
 
-CONTAINER_NAME="adapters"
 TARGET="adapters/large/*"
 az storage blob download-batch \
   --account-name $ACCOUNT_NAME \
