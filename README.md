@@ -19,7 +19,7 @@ sudo usermod -aG docker $USER # step 1
 docker pull minions.azurecr.io/bird # step 3
 
 # sudo is required to create /etc/docker/daemon.json
-sudo ./create-deamon.sh
+sudo ./create-daemon.sh
 
 # Download evaluation data: bird/dev and bird/test
 ```
