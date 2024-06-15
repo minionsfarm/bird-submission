@@ -2,10 +2,12 @@
 ```
 git clone https://github.com/minionsfarm/bird-submission.git
 cd bird-submission
-# NOTE: If az is not installed, please install az first.
+# NOTE: If az is not installed, please install az first and login.
 ./prepare-eval.sh
 
 # Download a docker
+# In case of a docker permission problem, run `sudo usermod -aG docker $USER`
+# and exit the terminal and open a new one.
 docker pull minions.azurecr.io/bird
 
 # sudo is required to create /etc/docker/daemon.json
