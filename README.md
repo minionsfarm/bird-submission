@@ -12,6 +12,7 @@ git clone https://github.com/minionsfarm/bird-submission.git
 cd bird-submission
 # NOTE: If az is not installed, please install az first and login.
 ./prepare-eval.sh
+# models and adapters will be at /home/$(whoami)/models and /home/$(whoami)/adapters
 
 # Download a docker
 # In case of a docker permission problem, run `sudo usermod -aG docker $USER`
