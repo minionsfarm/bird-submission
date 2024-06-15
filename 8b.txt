@@ -1,0 +1,13 @@
+models/Meta-Llama-3-8B-Instruct/LICENSE
+models/Meta-Llama-3-8B-Instruct/README.md
+models/Meta-Llama-3-8B-Instruct/USE_POLICY.md
+models/Meta-Llama-3-8B-Instruct/config.json
+models/Meta-Llama-3-8B-Instruct/generation_config.json
+models/Meta-Llama-3-8B-Instruct/model-00001-of-00004.safetensors
+models/Meta-Llama-3-8B-Instruct/model-00002-of-00004.safetensors
+models/Meta-Llama-3-8B-Instruct/model-00003-of-00004.safetensors
+models/Meta-Llama-3-8B-Instruct/model-00004-of-00004.safetensors
+models/Meta-Llama-3-8B-Instruct/model.safetensors.index.json
+models/Meta-Llama-3-8B-Instruct/special_tokens_map.json
+models/Meta-Llama-3-8B-Instruct/tokenizer.json
+models/Meta-Llama-3-8B-Instruct/tokenizer_config.json

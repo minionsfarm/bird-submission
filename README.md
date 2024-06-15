@@ -10,8 +10,6 @@ Ubuntu-based HPC and AI (Ubuntu-HPC 2204 - x64 Gen2) - base image
 ```
 git clone https://github.com/minionsfarm/bird-submission.git
 cd bird-submission
-# NOTE: If az is not installed, please install az first and login.
-# For az installation: curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ./prepare-eval.sh
 # models and adapters will be at /home/$(whoami)/models and /home/$(whoami)/adapters
 
