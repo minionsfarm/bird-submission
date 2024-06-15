@@ -41,7 +41,7 @@ fi
 INPUT_DIR="${INPUT_DIR/#$HOME/\/home\/root}"
 OUTPUT_DIR="${OUTPUT_DIR/#$HOME/\/home\/root}"
 
-echo docker run \
+docker run \
     --rm \
     --gpus all \
     --runtime=nvidia \
