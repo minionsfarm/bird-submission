@@ -1,7 +1,9 @@
 ## machine spec
+```
 Azure Standard_NC96ads_A100_v4
 1T SSD
 Ubuntu-HPC 2204 - x64 Gen2
+```
 
 ## installation
 ```
