@@ -27,9 +27,10 @@ sudo ./create-daemon.sh
 
 ## generation
 ```
-# for dev (about 1 hour)
+# eval takes about 1 hour with small and 6 hours with large.
+# for dev
 ./run-eval.sh dev small <INPUT_DIR> <OUTPUT_DIR>
-# for test (about 6 hours)
+# for test
 ./run-eval.sh test small <INPUT_DIR> <OUTPUT_DIR>
 ./run-eval.sh test large <INPUT_DIR> <OUTPUT_DIR>
 
