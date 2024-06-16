@@ -55,3 +55,19 @@ dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or dir
 dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or directory
 ```
 is expected to get printed. Not a problem.
+
+## other errors
+```
+docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
+```
+To resolve this do the following:
+```
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+
+sudo apt-get install -y nvidia-docker2
+
+sudo systemctl restart docker
+```
