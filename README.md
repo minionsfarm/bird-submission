@@ -22,6 +22,8 @@ docker pull minions.azurecr.io/bird # step 3
 # sudo is required to create /etc/docker/daemon.json
 sudo ./create-daemon.sh
 
+# ensure python is installed. The data format gets converted at the end with simple python script.
+
 # Download evaluation data: bird/dev and bird/test
 ```
 
