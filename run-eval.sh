@@ -48,6 +48,8 @@ if [[ "$OUTPUT_DIR" != "$HOME"* || "$OUTPUT_DIR" == "$HOME" ]]; then
     exit 1
 fi
 
+INPUT_DIR_ORIG=$INPUT_DIR
+OUTPUT_DIR_ORIG=$OUTPUT_DIR
 # Replace $HOME in INPUT_DIR with /home/root
 INPUT_DIR="${INPUT_DIR/#$HOME/\/home\/root}"
 OUTPUT_DIR="${OUTPUT_DIR/#$HOME/\/home\/root}"
@@ -68,7 +70,7 @@ docker run \
     --num_gpus=4
 
 
-python convert_format.py \
-  --questions_filename=${INPUT_DIR}/${SPLIT}/${SPLIT}.json \
-  --output_queries_filename=${OUTPUT_DIR}/${SPLIT}/output-${MODEL}.sql \
-  --output_filename=${OUTPUT_DIR}/${SPLIT}/output-${MODEL}.json
+sudo python convert_format.py \
+  --questions_filename=${INPUT_DIR_ORIG}/${SPLIT}/${SPLIT}.json \
+  --output_queries_filename=${OUTPUT_DIR_ORIG}/${DATASET}/output-${MODEL}.sql \
+  --output_filename=${OUTPUT_DIR_ORIG}/${DATASET}/output-${MODEL}.json
