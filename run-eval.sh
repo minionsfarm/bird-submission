@@ -66,3 +66,9 @@ docker run \
     --input_dir="${INPUT_DIR}" \
     --output_dir="${OUTPUT_DIR}" \
     --num_gpus=4
+
+
+python convert_format.py \
+  --questions_filename=${INPUT_DIR}/${SPLIT}/${SPLIT}.json \
+  --output_queries_filename=${OUTPUT_DIR}/${SPLIT}/output-${MODEL}.sql \
+  --output_filename=${OUTPUT_DIR}/${SPLIT}/output-${MODEL}.json
