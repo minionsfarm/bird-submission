@@ -54,6 +54,8 @@ OUTPUT_DIR_ORIG=$OUTPUT_DIR
 INPUT_DIR="${INPUT_DIR/#$HOME/\/home\/root}"
 OUTPUT_DIR="${OUTPUT_DIR/#$HOME/\/home\/root}"
 
+mkdir -p ${OUTPUT_DIR_ORIG}/${DATASET}
+
 set -x
 docker run \
     --rm \
@@ -70,7 +72,7 @@ docker run \
     --num_gpus=4
 
 
-sudo python convert_format.py \
+python convert_format.py \
   --questions_filename=${INPUT_DIR_ORIG}/${SPLIT}/${SPLIT}.json \
   --output_queries_filename=${OUTPUT_DIR_ORIG}/${DATASET}/output-${MODEL}.sql \
   --output_filename=${OUTPUT_DIR_ORIG}/${DATASET}/output-${MODEL}.json
