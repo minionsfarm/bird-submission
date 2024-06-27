@@ -4,12 +4,13 @@ PREFIX=https://minionsbirdsubmission2.blob.core.windows.net/models
 USER=$(whoami)
 NUM_THREADS=8
 
+BASE_DIR="/home/${USER}/bird-submission"
 # Define the input files and corresponding destination directories
 declare -A FILES_AND_DIRS=(
     # ["70b.txt"]="/home/${USER}/models/Meta-Llama-3-70B-Instruct"
     # ["8b.txt"]="/home/${USER}/models/Meta-Llama-3-8B-Instruct"
     # ["large.txt"]="/home/${USER}/adapters/large"
-    ["small.txt"]="/home/${USER}/adapters/small"
+    ["${BASE_DIR}/small.txt"]="/home/${USER}/adapters/small"
 )
 
 # Create the destination directories if they do not exist
