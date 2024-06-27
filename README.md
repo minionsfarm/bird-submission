@@ -8,6 +8,9 @@ Ubuntu-based HPC and AI (Ubuntu-HPC 2204 - x64 Gen2) - base image
 
 ## prep
 ```
+# Step 1: launch an instance with minions.azurecr.io/bird_v2
+
+# Step 2: mount data and get into docker
 # Our program expects <BIRD_DATASET_DIR> to contain bird/ which contain dev/ and test/.
 # e.g. /home/dokook/something/bird/dev/dev.json then <BIRD_DATASET_DIR> should be /home/dokook/something
 docker run --gpus all -v <BIRD_DATASET_DIR>:/home/root -it minions.azurecr.io/bird_v2
