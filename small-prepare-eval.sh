@@ -44,5 +44,5 @@ for FILE_LIST in "${!FILES_AND_DIRS[@]}"; do
     download_from_file_to_dir "$FILE_LIST" "$DEST_DIR"
 done
 
-mv ~/adapters/small ~/adapters/20240603_052455
-# mv ~/adapters/large ~/adapters/20240528_220303
+mv /home/root/adapters/small /home/root/adapters/20240603_052455
+# mv /home/root/adapters/large /home/root/adapters/20240528_220303
