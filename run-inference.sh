@@ -39,4 +39,4 @@ TOKENIZERS_PARALLELISM=false python3 /home/minions/public/run.py \
     --output_dir /home/root/output \
     --num_gpus=$GPUS
 
-./home/minions/bird-submission/run-eval.sh $SPLIT $MODEL
+/home/minions/bird-submission/run-eval.sh $SPLIT $MODEL

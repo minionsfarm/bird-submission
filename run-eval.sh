@@ -26,7 +26,7 @@ if [ -z "$DATASET" ]; then
     DATASET="bird_${SPLIT}"
 fi
 
-python /home/minions/public/run_evaluation.py \
+python3 /home/minions/public/run_evaluation.py \
     --data_mode $SPLIT \
     --data_path "/home/root/bird" \
     --predicted_sql_path_kg "/home/root/output/${DATASET}/${MODEL}"
