@@ -8,8 +8,8 @@ Ubuntu-based HPC and AI (Ubuntu-HPC 2204 - x64 Gen2) - base image
 
 ## prep
 ```
-# Our program expects <BIRD_DATASET_DIR> to be named bird/ and contain dev/ and test.
-# e.g. /home/dokook/something/bird and dev/dev.json is under bird/
+# Our program expects <BIRD_DATASET_DIR> to contain bird/ which contain dev/ and test/.
+# e.g. /home/dokook/something/bird/dev/dev.json then <BIRD_DATASET_DIR> should be /home/dokook/something
 docker run --gpus all -v <BIRD_DATASET_DIR>:/home/root -it minions.azurecr.io/bird_v2
 
 # The following should print nothing if data is mounted in the expected path.
