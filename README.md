@@ -14,7 +14,7 @@ docker run --gpus all -v <BIRD_DATASET_DIR>:/home/root -it minions.azurecr.io/bi
 
 # The following should print nothing if data is mounted in the expected path.
 # If it complains, remount the data.
-./bird-submission/sanity-check.sh
+./bird-submission/sanity_check.sh
 
 # download models and adapters at /home/root/models and /home/root/adapters
 ./bird-submission/prepare-eval.sh
