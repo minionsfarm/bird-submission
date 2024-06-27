@@ -32,7 +32,7 @@ docker run --gpus all -v <WORK_DIR>:/home/root -it minions.azurecr.io/bird_v2
 ./bird-submission/run-inference.sh test small
 ./bird-submission/run-inference.sh test large
 
-# all output will be at /home/root/output (inside docker) <BIRD_DATASET_DIR>/output (outside docker)
+# all output will be at /home/root/output (inside docker) <WORK_DIR>/output (outside docker)
 ```
 
 NOTE:
