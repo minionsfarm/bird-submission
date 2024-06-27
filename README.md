@@ -19,7 +19,9 @@ docker run --gpus all -v <WORK_DIR>:/home/root -it minions.azurecr.io/bird_v2
 # If it complains, remount the data.
 ./bird-submission/sanity_check.sh
 
-# download models and adapters at /home/root/models and /home/root/adapters
+# Step 3: download models and adapters
+# download models and adapters at /home/root/models and /home/root/adapters (<WORK_DIR>/models and <WORK_DIR>/adapters)
+# This step takes a few minutes on Azure in North America. Not sure on other platforms and other regions.
 ./bird-submission/prepare-eval.sh
 ```
 
