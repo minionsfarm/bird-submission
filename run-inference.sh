@@ -14,6 +14,7 @@ if [ "$MODEL" != "small" ] && [ "$MODEL" != "large" ]; then
     exit 1
 fi
 
+MODEL_ORIG=$MODEL
 # Map small to x and large to y
 if [ "$MODEL" == "small" ]; then
     MODEL="20240603_052455"
@@ -39,4 +40,4 @@ TOKENIZERS_PARALLELISM=false python3 /home/minions/public/run.py \
     --output_dir /home/root/output \
     --num_gpus=$GPUS
 
-/home/minions/bird-submission/run-eval.sh $SPLIT $MODEL
+/home/minions/bird-submission/run-eval.sh $SPLIT $MODEL_ORIG
