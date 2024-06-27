@@ -4,12 +4,13 @@ PREFIX=https://minionsbirdsubmission2.blob.core.windows.net/models
 USER=$(whoami)
 NUM_THREADS=8
 
+BASE_DIR="/home/minions/bird-submission"
 # Define the input files and corresponding destination directories
 declare -A FILES_AND_DIRS=(
-    ["70b.txt"]="/home/${USER}/models/Meta-Llama-3-70B-Instruct"
-    ["8b.txt"]="/home/${USER}/models/Meta-Llama-3-8B-Instruct"
-    ["large.txt"]="/home/${USER}/adapters/large"
-    ["small.txt"]="/home/${USER}/adapters/small"
+    ["${BASE_DIR}/70b.txt"]="/home/${USER}/models/Meta-Llama-3-70B-Instruct"
+    ["${BASE_DIR}/8b.txt"]="/home/${USER}/models/Meta-Llama-3-8B-Instruct"
+    ["${BASE_DIR}/large.txt"]="/home/${USER}/adapters/20240528_220303"
+    ["${BASE_DIR}/small.txt"]="/home/${USER}/adapters/20240603_052455"
 )
 
 # Create the destination directories if they do not exist
@@ -44,5 +45,3 @@ for FILE_LIST in "${!FILES_AND_DIRS[@]}"; do
     download_from_file_to_dir "$FILE_LIST" "$DEST_DIR"
 done
 
-mv /home/root/adapters/small /home/root/adapters/20240603_052455
-mv /home/root/adapters/large /home/root/adapters/20240528_220303
