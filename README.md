@@ -30,6 +30,7 @@ docker run --gpus all -v <BIRD_DATASET_DIR>:/home/root -it minions.azurecr.io/bi
 ./bird-submission/run-inference.sh test large
 
 # all output will be at <BIRD_DATASET_DIR>/output
+```
 
 NOTE:
 ```
