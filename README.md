@@ -6,45 +6,30 @@ Standard_NC96ads_A100_v4 (4 A100 80GB)
 Ubuntu-based HPC and AI (Ubuntu-HPC 2204 - x64 Gen2) - base image
 ```
 
-## installation
+## prep
 ```
-git clone https://github.com/minionsfarm/bird-submission.git
-cd bird-submission
-# NOTE: you need at least 200GB of free disk
-# NOTE: install wget if not installed
-./prepare-eval.sh
-# models and adapters will be at /home/$(whoami)/models and /home/$(whoami)/adapters
+# Our program expects <BIRD_DATASET_DIR> to be named bird/ and contain dev/ and test.
+# e.g. /home/dokook/something/bird and dev/dev.json is under bird/
+docker run --gpus all -v <BIRD_DATASET_DIR>:/home/root -it minions.azurecr.io/bird_v2
 
-# Download a docker (three steps)
-sudo usermod -aG docker $USER # step 1
-# Step 2. exit the terminal and open a new one
-docker pull minions.azurecr.io/bird # step 3
+# The following should print nothing if data is mounted in the expected path.
+# If it complains, remount the data.
+./bird-submission/sanity-check.sh
 
-# sudo is required to create /etc/docker/daemon.json
-sudo ./create-daemon.sh
-
-# ensure python is installed. The data format gets converted at the end with simple python script.
-
-# Download evaluation data: bird/dev and bird/test
+# download models and adapters at /home/root/models and /home/root/adapters
+./bird-submission/prepare-eval.sh
 ```
 
-## generation
+## generation and eval
 ```
 # eval takes about 1 hour with small and 6 hours with large on dev.
 # for dev
-./run-eval.sh dev small <INPUT_DIR> <OUTPUT_DIR>
+./bird-submission/run-inference.sh dev small
 # for test
-./run-eval.sh test small <INPUT_DIR> <OUTPUT_DIR>
-./run-eval.sh test large <INPUT_DIR> <OUTPUT_DIR>
+./bird-submission/run-inference.sh test small
+./bird-submission/run-inference.sh test large
 
-# e.g.
-./run-eval.sh dev small /home/azureuser/datasets/bird /home/azureuser/output
-
-NOTE: If you encounter `docker: Error response from daemon: unknown or invalid runtime name: nvidia.`
-run `sudo systemctl restart docker`
-```
-The <INPUT_DIR> should contain dev/ and test/ where dev/ contains dev_databases, dev.json, dev.sql, etc.
-Both <INPUT_DIR> and <OUTPUT_DIR> should start with /home/$(whoami)
+# all output will be at <BIRD_DATASET_DIR>/output
 
 NOTE:
 ```
@@ -59,18 +44,3 @@ dateutil/zoneinfo/__init__.py:26: UserWarning: I/O error(2): No such file or dir
 ```
 is expected to get printed. Not a problem.
 
-## other errors
-```
-docker: Error response from daemon: could not select device driver "" with capabilities: [[gpu]].
-```
-To resolve this do the following:
-```
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-sudo apt-get update
-
-sudo apt-get install -y nvidia-docker2
-
-sudo systemctl restart docker
-```
