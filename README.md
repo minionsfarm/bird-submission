@@ -13,6 +13,12 @@ Ubuntu-based HPC and AI (Ubuntu-HPC 2204 - x64 Gen2) - base image
 # Step 2: mount data and get into docker
 # Our program expects <WORK_DIR> to contain bird/ which contain dev/ and test/.
 # e.g. /home/dokook/something/bird/dev/dev.json then <WORK_DIR> should be /home/dokook/something
+# -- something
+#   -- bird
+#     -- dev
+#       -- dev.json  
+#     -- test
+#       -- test.json
 docker run --gpus all -v <WORK_DIR>:/home/root -it minions.azurecr.io/bird_v2
 
 # The following should print nothing if data is mounted in the expected path.
@@ -30,6 +36,7 @@ docker run --gpus all -v <WORK_DIR>:/home/root -it minions.azurecr.io/bird_v2
 # eval takes about 1 hour with small and 6 hours with large on dev.
 # for dev
 ./bird-submission/run-inference.sh dev small
+./bird-submission/run-inference.sh dev large
 # for test
 ./bird-submission/run-inference.sh test small
 ./bird-submission/run-inference.sh test large
